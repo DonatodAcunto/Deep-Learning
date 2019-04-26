@@ -1,0 +1,17 @@
+{
+    "label_map": {
+        "0": "CarpoCapsa",
+        "1": "Insects"
+    },
+    "optimizer": "SGD",
+    "epochs": 10,
+    "loss": "categorical_crossentropy",
+    "image_width": 224,
+    "batch_size": 10,
+    "metrics": [
+        "accuracy"
+    ],
+    "momentum": 0.9,
+    "image_height": 224,
+    "learning_rate": 0.0001
+}
