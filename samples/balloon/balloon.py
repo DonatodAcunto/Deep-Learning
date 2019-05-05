@@ -141,8 +141,9 @@ class BalloonDataset(utils.Dataset):
                 image_id=a['filename'],  # use file name as a unique image id
                 path=image_path,
                 width=width, height=height,
-                polygons=polygons)
-                class_ids=class_ids
+                polygons=polygons,
+                class_ids="carpocapsa")
+
                            
 
     def load_mask(self, image_id):
