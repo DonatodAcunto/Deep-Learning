@@ -200,7 +200,7 @@ def train(model):
     print("Training network carpocapsa")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=35,
+                epochs=45,
                 layers='heads')
 
 
