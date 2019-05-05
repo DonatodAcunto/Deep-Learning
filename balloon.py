@@ -63,16 +63,16 @@ class BalloonConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 2  # Background + balloon
+    NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
 
     # Skip detections with < 90% confidence
-    DETECTION_MIN_CONFIDENCE = 0.9
+    DETECTION_MIN_CONFIDENCE = 0.8
 
 
 ############################################################
@@ -87,12 +87,12 @@ class BalloonDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes. We have only one class to add.
-        self.add_class("carpocapsa", 1, "Polygon")
+        self.add_class("carpocapsa", 1, "carpocapsa")
         #added
-        self.add_class("insect", 2, "Polygon")
+        #self.add_class("insect", 2, "Polygon")
         # Train or validation dataset?
-        #assert subset in ["train", "val"]
-        assert subset in ["train"]
+        assert subset in ["train", "val"]
+       
         dataset_dir = os.path.join(dataset_dir, subset)
 
         # Load annotations
@@ -142,7 +142,7 @@ class BalloonDataset(utils.Dataset):
                 path=image_path,
                 width=width, height=height,
                 polygons=polygons)
-                #class_ids=class_ids
+                class_ids=class_ids
                            
 
     def load_mask(self, image_id):
@@ -199,7 +199,7 @@ def train(model):
     print("Training network carpocapsa")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=30,
+                epochs=35,
                 layers='heads')
 
 
