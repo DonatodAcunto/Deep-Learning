@@ -138,7 +138,8 @@ class BalloonDataset(utils.Dataset):
 
             self.add_image(
                 "carpocapsa",
-                image_id=a['filename'],  # use file name as a unique image id
+                image_id=a['carpocapsa'],  # use file name as a unique image id
+                #image_id=a['filename'],  # use file name as a unique image id
                 path=image_path,
                 width=width, height=height,
                 polygons=polygons)
