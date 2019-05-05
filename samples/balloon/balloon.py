@@ -66,7 +66,7 @@ class BalloonConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 2 + 1  # Background + balloon
+    NUM_CLASSES = 1 + 2  # Background + balloon
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
@@ -87,8 +87,9 @@ class BalloonDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes. We have only one class to add.
-        self.add_class("carpocapsa", 1, "carpocapsa")
-
+        self.add_class("carpocapsa", 1, "Polygon")
+        #added
+        self.add_class("insect", 2, "Polygon")
         # Train or validation dataset?
         assert subset in ["train", "val"]
         dataset_dir = os.path.join(dataset_dir, subset)
@@ -135,11 +136,13 @@ class BalloonDataset(utils.Dataset):
             height, width = image.shape[:2]
 
             self.add_image(
-                "balloon",
+                "carpocapsa",
                 image_id=a['filename'],  # use file name as a unique image id
                 path=image_path,
                 width=width, height=height,
                 polygons=polygons)
+                #class_ids=class_ids
+                           
 
     def load_mask(self, image_id):
         """Generate instance masks for an image.
@@ -196,7 +199,7 @@ def train(model):
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
                 epochs=30,
-                layers='carpocapsa')
+                layers='heads')
 
 
 def color_splash(image, mask):
