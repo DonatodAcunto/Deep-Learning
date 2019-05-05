@@ -63,10 +63,10 @@ class BalloonConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 2  # Background + balloon
+    NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
@@ -89,10 +89,10 @@ class BalloonDataset(utils.Dataset):
         # Add classes. We have only one class to add.
         self.add_class("carpocapsa", 1, "Polygon")
         #added
-        self.add_class("insect", 2, "Polygon")
+        #self.add_class("insect", 2, "Polygon")
         # Train or validation dataset?
         assert subset in ["train", "val"]
-        #assert subset in ["train"]
+       
         dataset_dir = os.path.join(dataset_dir, subset)
 
         # Load annotations
