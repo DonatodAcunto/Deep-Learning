@@ -87,7 +87,7 @@ class BalloonDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes. We have only one class to add.
-        self.add_class("carpocapsa", 1, "Polygon")
+        self.add_class("carpocapsa", 1, "carpocapsa")
         #added
         #self.add_class("insect", 2, "Polygon")
         # Train or validation dataset?
