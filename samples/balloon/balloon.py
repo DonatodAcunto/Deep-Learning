@@ -91,7 +91,8 @@ class BalloonDataset(utils.Dataset):
         #added
         self.add_class("insect", 2, "Polygon")
         # Train or validation dataset?
-        assert subset in ["train", "val"]
+        #assert subset in ["train", "val"]
+        assert subset in ["train"]
         dataset_dir = os.path.join(dataset_dir, subset)
 
         # Load annotations
