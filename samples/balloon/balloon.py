@@ -142,7 +142,7 @@ class BalloonDataset(utils.Dataset):
                 path=image_path,
                 width=width, height=height,
                 polygons=polygons,
-                class_ids="carpocapsa")
+                class_ids=81)
 
                            
 
@@ -200,7 +200,7 @@ def train(model):
     print("Training network carpocapsa")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=45,
+                epochs=30,
                 layers='heads')
 
 
